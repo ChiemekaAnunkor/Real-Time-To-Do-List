@@ -1,7 +1,7 @@
 let time = document.querySelector(".time");
 let input = document.querySelector(".input");
 let save = document.querySelector(".save");
-let textArea = document.querySelectorAll(".story");
+let textArea = document.querySelector(".story");
 console.log(textArea[1]);
 // renders input if any on load
 function renderInput() {
