@@ -1,68 +1,57 @@
-let time = document.querySelector(".time");
-let input = document.querySelector(".input");
-let save = document.querySelector(".save");
-let textArea = document.querySelector(".story");
-console.log(textArea[1]);
+let allTimeElement = document.querySelectorAll(".time");
+let allSaveButton = document.querySelectorAll(".save");
+let allTextArea = document.querySelectorAll(".story");
+
 // renders input if any on load
 function renderInput() {
-  let savedInput = localStorage.getItem("input");
-  textArea.innerHTML = savedInput;
-  //   console.log(savedInput);
+  for (let i = 0; i < allTextArea.length; i++) {
+    let RenderedItem = localStorage.getItem(`input${i}`);
+    allTextArea[i].textContent = RenderedItem;
+  }
 }
 renderInput();
 //save input recored in the menue to local storage
 
-function saveInput(e) {
-  let aTag = e.target.parentNode.parentNode;
-  e.preventDefault();
-  let savedInput = textArea.value;
-  localStorage.setItem("input", savedInput);
-}
-save.addEventListener("click", saveInput);
 function Click(e) {
   e.preventDefault();
   let aTag = e.target.parentNode.parentNode;
-  if (aTag.classList.value == "save") console.log(e.target);
+  if (aTag) {
+    for (let i = 0; i < allTextArea.length; i++) {
+      if (aTag.classList.value == i) {
+        let savedInput = allTextArea[i].value;
+        localStorage.setItem(`input${i}`, savedInput);
+      }
+    }
+  }
 }
 document.addEventListener("click", Click);
 
-//test
-
-const arr = { input1: "", input2: "", input3: "" };
-
-console.log(arr);
-for (const k in arr) {
-  console.log(k);
-}
-
-localStorage.setItem("arr", JSON.stringify(arr));
-
-let ss = JSON.parse(localStorage.getItem("arr"));
-
-const array = [2, 3, 4, 5];
-let val = Object.assign({}, textArea);
-console.log(Object.keys(val).length);
-
-class Rectangle {
-  constructor(height, width) {
-    this.height = height;
-    this.width = width;
-  }
-}
-
-const p = new Rectangle("sdsd", "lslds"); // ReferenceError
-const e = new Rectangle("sdsd", "lslds"); // ReferenceError
+//set calender using the time  class from the html to append the time
 
 let clock = moment().format("h:mm:ss a");
 daytime = document.getElementById("currentDay");
 daytime.textContent = clock;
-console.log(clock);
 
-//require moment + time format
-
-//Check the current time each 5 seconds and update message
 setInterval(function () {
+  //array to store final number
+  let result;
+  // array of numbers and its  index possitions that match each html item
+
+  let ArrayOfPossibleTimes = [9, 10, 11, 12, 1, 2, 3, 4, 5];
   let clock = moment().format("h:mm:ss a");
+  let timeConvertedIntoNum = clock.split(":");
+  timeConvertedIntoNum = timeConvertedIntoNum[0];
+  timeConvertedIntoNum = parseInt(timeConvertedIntoNum);
+  for (let i = 0; i < ArrayOfPossibleTimes.length; i++) {
+    if (timeConvertedIntoNum == ArrayOfPossibleTimes[i]) {
+      result = i;
+    }
+  }
+  for (let i = 0; i < allTextArea.length; i++) {
+    if (i == result) {
+      allTextArea[i].style.backgroundColor = "red";
+    }
+  }
 
   daytime.textContent = clock;
 }, 1000);

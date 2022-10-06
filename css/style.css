@@ -89,4 +89,5 @@ textarea {
 textarea {
   border: 2px solid black;
   width: 100%;
+  background-color: gray;
 }
