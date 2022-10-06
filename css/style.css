@@ -70,24 +70,48 @@ textarea {
   transition: all 0.3s ease-in-out;
 }
 .container {
+  padding-bottom: 30px;
+  border-bottom: 10px solid black;
+  width: 100%;
 }
 .timebox {
   width: 100%;
   display: flex;
-  margin: 10px;
 }
 .column-start {
   flex: 10%;
+  border-top: 2px solid rgba(0, 0, 0, 0.192);
 }
 .column-main {
   flex: 80%;
 }
 .column-end {
   flex: 10%;
-  text-align: right;
+  background-color: #12aec8;
+  border-top-right-radius: 10px;
+  border-bottom-right-radius: 10px;
+  box-shadow: -7px 0 8px -4px rgba(17, 17, 17, 0.678);
+  margin-top: -0.4px;
+  margin-bottom: 2.5px;
+  text-align: center;
 }
+
+a {
+  color: white;
+}
+i {
+}
+.buttonclass {
+  height: 50px;
+  margin-top: 20px;
+}
+
 textarea {
-  border: 2px solid black;
+  border: 2px solid rgba(0, 0, 0, 0.164);
   width: 100%;
   background-color: gray;
+}
+textarea:focus {
+  outline: none !important;
+  border: 2px solid #12aec8;
 }

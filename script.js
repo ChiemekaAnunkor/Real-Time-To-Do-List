@@ -17,7 +17,10 @@ function Click(e) {
   let aTag = e.target.parentNode.parentNode;
   if (aTag) {
     for (let i = 0; i < allTextArea.length; i++) {
-      if (aTag.classList.value == i) {
+      if (aTag.classList) {
+        aTag = aTag.classList.value;
+      }
+      if (aTag == i) {
         let savedInput = allTextArea[i].value;
         localStorage.setItem(`input${i}`, savedInput);
       }
@@ -49,7 +52,11 @@ setInterval(function () {
   }
   for (let i = 0; i < allTextArea.length; i++) {
     if (i == result) {
-      allTextArea[i].style.backgroundColor = "red";
+      allTextArea[i].style.backgroundColor = "#F04D56";
+    } else if (i > result) {
+      allTextArea[i].style.backgroundColor = "#74E96E";
+    } else {
+      allTextArea[i].style.backgroundColor = "#CCCCCC";
     }
   }
 
